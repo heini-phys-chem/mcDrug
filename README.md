@@ -6,7 +6,7 @@ mcDock.cpp
 mcGif.cpp
 ```
 ##### mcGrow
-Simple growing algorithm which randomly takes a fragment and adds it to the chain.<br />
+123Simple growing algorithm which randomly takes a fragment and adds it to the chain.<br />
 
 ##### mcDock
 Simple Monte Carlo docking algorithm (written by andersx, https://github.com/andersx/mcdock) <br />
