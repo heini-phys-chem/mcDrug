@@ -1,0 +1,2 @@
+rotate 90 
+write frames {*} 800 600 "gif/all.jpg"
