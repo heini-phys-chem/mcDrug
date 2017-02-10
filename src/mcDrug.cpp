@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     ifs.close();
 
     // loop to grow the chain
-    for (int i=1; i<6; i++){
+    for (int i=1; i<4; i++){
         int decide = rand() % 8;
         mcGrow(mol, fragment[decide], bondorder);
         mol_tmp = mcDock(mol, mol_glucose);

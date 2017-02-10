@@ -159,7 +159,7 @@ OpenBabel::OBMol mcDock(OpenBabel::OBMol mol, OpenBabel::OBMol mol_glucose) {
                 delta_e =  e - energy_old;
 
                 // Metropolis-Hastings MC criterion, accept ...
-                 if (std::exp( - delta_e / 1.0) >= uniform1(generator)) {
+                 if (std::exp( - delta_e / 0.3) >= uniform1(generator)) {
                         mol_old.SetCoordinates(mol_ligand.GetCoordinates());
                         energy_old = e;
                         accept += 1;
