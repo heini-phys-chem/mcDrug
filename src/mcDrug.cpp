@@ -24,60 +24,26 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    // check command line
-    if (argc < 3) {
-        printf("cmd line must take 2 input files (molecule to grow and the target molecule)\n");
-        return 1;
-    }
 
-    // read in file names
-    string grow = argv[1];
-    string glucose = argv[2];
+	ifstream ifs;
 
-    // define fragment fils
-    string fragment[] = {"coords/ch3.xyz","coords/nh2.xyz","coords/cf3.xyz","coords/och3.xyz","coords/oh.xyz","coords/furan.xyz","coords/ph.xyz","coords/5mem.xyz"};
-    
-    // bondorder (still hardcoded)
-    int bondorder=1;
+	OpenBabel::OBMol frag1, frag2, mol_tmp;
+	OpenBabel::OBConversion conv1, conv2;
+	conv1.SetInAndOutFormats("xyz", "xyz");
+	conv2.SetInAndOutFormats("xyz", "xyz");
 
-    // initialize the molecules
-    OpenBabel::OBMol mol, mol2, mol_glucose, mol_tmp;
-    
-    // initialize output writing/format
-    OpenBabel::OBConversion conv;
-    conv.SetInAndOutFormats("xyz","xyz");
-    OpenBabel::OBConversion conv2;
-    conv2.SetInAndOutFormats("xyz", "xyz");
+	string fragment1 = "coords/fragment1.xyz";//argv[1];
+	string fragment2 = "coords/fragment2.xyz";//argv[2];
 
-    ofstream ofs("gif/test.xyz");
-    ofstream ofs_min("gif/min.xyz", ofstream::app);
-    ifstream ifs;
+	ifs.open(fragment1.c_str());
+	conv1.Read(&frag1, &ifs);
+	ifs.close();
 
-    // read in growing molecule
-    ifs.open(grow.c_str());
-    conv.Read(&mol, &ifs);
-    ifs.close();
+	ifs.open(fragment2.c_str());
+	conv2.Read(&frag2, &ifs);
+	ifs.close();
 
-    // read in target molecule
-    ifs.open(glucose.c_str());
-    conv.Read(&mol_glucose, &ifs);
-    ifs.close();
+	mol_tmp = mcDock(frag1, frag2);
 
-    // loop to grow the chain
-    for (int i=1; i<4; i++){
-        int decide = rand() % 8;
-        mcGrow(mol, fragment[decide], bondorder);
-        mol_tmp = mcDock(mol, mol_glucose);
-        conv2.Write(&mol_tmp, &ofs_min);
-    }
-
-    ofs.close();
-    ofs_min.close();
- 
-
-    //mcGif(mol_out);
-    // make a GIF
-    mcGif("gif/min.xyz");
-
-return 0;
+	return 0;
 }

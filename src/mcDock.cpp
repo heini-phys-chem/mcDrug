@@ -107,7 +107,7 @@ OpenBabel::OBMol mcDock(OpenBabel::OBMol mol, OpenBabel::OBMol mol_glucose) {
             // Translate molecule randomly
             dir.randomUnitVector();
             com = get_com(mol);
-            temp = dir * 4.0 - com;
+            temp = dir * 3.0 - com;
             move_molecule(mol, temp);
             
             // Rotate molecule randomly
@@ -139,7 +139,7 @@ OpenBabel::OBMol mcDock(OpenBabel::OBMol mol, OpenBabel::OBMol mol_glucose) {
             int endid = mol_ligand.NumAtoms() + 1;
 
             // Begin MC simulation
-            for (int step = 0; step < 1000; step++) {
+            for (int step = 0; step < 10; step++) {
 
                 // Translation move
                 move.randomUnitVector();

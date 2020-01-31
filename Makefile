@@ -1,7 +1,8 @@
 CXX = g++
 
-OBDIR = /home/stefan/openbabel
+OBDIR = /opt/openbabel/
 
+#INCLUDE = -I$(OBDIR)/include/openbabel-2.0/
 INCLUDE = -I$(OBDIR)/include/openbabel-2.0/
 LIBS = -L$(OBDIR)/lib
 CXX_FLAGS = -std=c++11 -O3 -march=native -Wall
@@ -29,6 +30,7 @@ clean:
 	rm -f *.o
 	rm -f *.gch
 	rm -f gif/all* gif/test.xyz gif/conformers.xyz gif/min.xyz gif/out.xyz
+	rm -f all.xyz
 
 clean_gif:
 	rm -f gif/all* gif/test.xyz gif/conformers.xyz gif/min.xyz gif/out.xyz
