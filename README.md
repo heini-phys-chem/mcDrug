@@ -14,6 +14,3 @@ Rotamer search and minimization with a force field.<br />
 
 ##### mcGif
 Fancy Gif creator.<br />
-
-###### TODO / comming soon
-it is a first working version of the program and there will be alot of features added...<br />
